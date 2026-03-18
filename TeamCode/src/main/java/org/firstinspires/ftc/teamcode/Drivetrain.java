@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.hardware.digitalchickenlabs.OctoQuad;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -40,7 +40,7 @@ public class Drivetrain {
         robotPosition = startPosition;
 
         configureDriveMotors();
-        Systems.DT.setSubSystem(this);
+        //Systems.DT.setSubSystem(this);
     }
 
     public Drivetrain(HardwareMap hardwareMap) throws InterruptedException {
@@ -53,7 +53,7 @@ public class Drivetrain {
         robotPosition = odo.getRobotPos();
 
         configureDriveMotors();
-        Systems.DT.setSubSystem(this);
+        //Systems.DT.setSubSystem(this);
     }
 
     private void configureDriveMotors() {

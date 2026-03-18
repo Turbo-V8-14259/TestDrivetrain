@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import androidx.annotation.NonNull;
 
-import org.firstinspires.ftc.teamcode.core.util.Pose2D;
 
 public interface Localizer {
     Pose2D getStartPos();
