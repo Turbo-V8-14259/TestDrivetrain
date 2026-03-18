@@ -14,7 +14,7 @@ public class Drivetrain {
     public static Pose2D publicRobotVelocity = new Pose2D(0, 0, 0);
     public static double maxTranslationalPower = 1;
 
-    private final Localizer odo;
+    //private final Localizer odo;
     private final DcMotorEx FL;
     private final DcMotorEx BL;
     private final DcMotorEx FR;
@@ -36,7 +36,7 @@ public class Drivetrain {
         FR = hardwareMap.get(DcMotorEx.class, "fr");
         BR = hardwareMap.get(DcMotorEx.class, "br");
 
-        odo = new OctoQuad(hardwareMap, startPosition);
+        //odo = new OctoQuad(hardwareMap, startPosition);
         robotPosition = startPosition;
 
         configureDriveMotors();
@@ -49,8 +49,8 @@ public class Drivetrain {
         FR = hardwareMap.get(DcMotorEx.class, "fr");
         BR = hardwareMap.get(DcMotorEx.class, "br");
 
-        odo = new OctoQuad(hardwareMap);
-        robotPosition = odo.getRobotPos();
+        //odo = new OctoQuad(hardwareMap);
+        //robotPosition = odo.getRobotPos();
 
         configureDriveMotors();
         //Systems.DT.setSubSystem(this);
@@ -129,62 +129,62 @@ public class Drivetrain {
         }
     }
 
-    public Pose2D updateOdometry() {
-        odo.read();
-        robotPosition = new Pose2D(odo.getRobotPos().getX(), odo.getRobotPos().getY(), odo.getRobotPos().getHeading());
-        robotVelocity = odo.getRobotVelocity();
-        publicRobotLocation = robotPosition;
-        publicRobotVelocity = robotVelocity;
-        return robotPosition;
-    }
-
-    public Pose2D getRobotPosition() {
-        robotPosition = new Pose2D(odo.getRobotPos().getX(), odo.getRobotPos().getY(), odo.getRobotPos().getHeading());
-        publicRobotLocation = robotPosition;
-        return robotPosition;
-    }
-
-    public Pose2D getRobotVelocity() {
-        robotVelocity = odo.getRobotVelocity();
-        publicRobotVelocity = robotVelocity;
-        return robotVelocity;
-    }
-
-    public Localizer getLocalizer() {
-        return odo;
-    }
-
-    public void recalibrateIMU() {
-        odo.recalibrateIMU();
-    }
-
-    public void resetPosAndIMU() {
-        odo.resetPosAndIMU();
-    }
-
-    public void setPosition(Pose2D position) {
-        odo.setPosition(new Pose2D(position.getX(), position.getY(), robotPosition.getHeading(UnnormalizedAngleUnit.RADIANS)));
-    }
-
-    public void setPositionTranslational(Pose2D position) {
-        odo.setPositionTranslational(new Pose2D(position.getX(), position.getY(), 0));
-    }
-
-    public void hardResetClose(boolean red) {
-        if (red) {
-            odo.setPosition(new Pose2D(32.5, 63.5, Math.PI / 2));
-        } else {
-            odo.setPosition(new Pose2D(-32.5, 63.5, Math.PI / 2));
-        }
-    }
-
-    public void hardResetHP(boolean red) {
-        if (red) {
-            odo.setPosition(new Pose2D(-63, -63.5, Math.PI / 2));
-        } else {
-            odo.setPosition(new Pose2D(63, -63.5, Math.PI / 2));
-        }
-    }
+//    public Pose2D updateOdometry() {
+//        odo.read();
+//        robotPosition = new Pose2D(odo.getRobotPos().getX(), odo.getRobotPos().getY(), odo.getRobotPos().getHeading());
+//        robotVelocity = odo.getRobotVelocity();
+//        publicRobotLocation = robotPosition;
+//        publicRobotVelocity = robotVelocity;
+//        return robotPosition;
+//    }
+//
+//    public Pose2D getRobotPosition() {
+//        robotPosition = new Pose2D(odo.getRobotPos().getX(), odo.getRobotPos().getY(), odo.getRobotPos().getHeading());
+//        publicRobotLocation = robotPosition;
+//        return robotPosition;
+//    }
+//
+//    public Pose2D getRobotVelocity() {
+//        robotVelocity = odo.getRobotVelocity();
+//        publicRobotVelocity = robotVelocity;
+//        return robotVelocity;
+//    }
+//
+//    public Localizer getLocalizer() {
+//        return odo;
+//    }
+//
+//    public void recalibrateIMU() {
+//        odo.recalibrateIMU();
+//    }
+//
+//    public void resetPosAndIMU() {
+//        odo.resetPosAndIMU();
+//    }
+//
+//    public void setPosition(Pose2D position) {
+//        odo.setPosition(new Pose2D(position.getX(), position.getY(), robotPosition.getHeading(UnnormalizedAngleUnit.RADIANS)));
+//    }
+//
+//    public void setPositionTranslational(Pose2D position) {
+//        odo.setPositionTranslational(new Pose2D(position.getX(), position.getY(), 0));
+//    }
+//
+//    public void hardResetClose(boolean red) {
+//        if (red) {
+//            odo.setPosition(new Pose2D(32.5, 63.5, Math.PI / 2));
+//        } else {
+//            odo.setPosition(new Pose2D(-32.5, 63.5, Math.PI / 2));
+//        }
+//    }
+//
+//    public void hardResetHP(boolean red) {
+//        if (red) {
+//            odo.setPosition(new Pose2D(-63, -63.5, Math.PI / 2));
+//        } else {
+//            odo.setPosition(new Pose2D(63, -63.5, Math.PI / 2));
+//        }
+//    }
 
     public double getCurrentDraw() {
         return FL.getCurrent(CurrentUnit.AMPS) + BL.getCurrent(CurrentUnit.AMPS) + FR.getCurrent(CurrentUnit.AMPS) + BR.getCurrent(CurrentUnit.AMPS);
